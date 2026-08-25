@@ -1,0 +1,540 @@
+
+@charset"UTF-8" ;
+
+/* 変数 */
+:root {
+    --color-primary:#1b2a4a;
+    --color-accent:#3b82f6;
+    --color-accent-light:#eff6ff;
+    --color-success:#10b981;
+    --color-warning:#f59e0b;
+    --color-danger:#ef4444;
+    --color-white:#fff;
+    --color-light:#f8fafc;
+    --color-mid:#e2e8f0;
+    --color-muted:#64748b;
+    --color-text:#1e293b;
+
+    --sidebar-width:200px;
+    --header-height:60px;
+    --radius:6px;
+    --transition:0.2s ease;
+}
+
+/* リセット */
+*,*::before,*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Noto Sans JP','Helvetica Neue',sans-serif;
+    color: var(--color-text);
+    background: var(--color-light);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+a {
+    color: inherit;text-decoration:none;
+}
+input,select,button {
+    font-family: inherit;font-size: inherit;
+}
+
+/* ログイン */
+.login-page {
+    background: var(--color-primary);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-wrap {
+    width: 100%;
+    max-width: 400px;
+    padding: 0 1rem;
+}
+
+.login-box {
+    background: var(--color-white);
+    border-radius: 12px;
+    padding: 3rem 2.5rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.login-logo {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.login-logo h1 {
+    font-size: 1.2rem;
+    color: var(--color-primary);
+    margin-bottom: 0.3rem;
+}
+
+.login-logo p {
+    font-size: 0.75rem;
+    color: var(--color-muted);
+    letter-spacing: 0.1em;
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--color-muted);
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.05em;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-mid);
+    border-radius: var(--radius);
+    font-size: 0.95rem;
+    color: var(--color-text);
+    background: var(--color-light);
+    transition: border-color var(--transition);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--color-accent);
+}
+
+.login-error {
+    color: var(--color-danger);
+    font-size: 0.8rem;
+    margin-bottom: 0.8rem;
+    min-height: 1.2rem;
+}
+
+.btn-login {
+    width: 100%;
+    padding: 0.85rem;
+    background: var(--color-accent);
+    color: var(--color-white);
+    border: none;
+    border-radius: var(--radius);
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background var(--transition);
+}
+
+.btn-login:hover {
+    background: #2563eb;
+}
+
+.login-hint {
+    text-align: center;
+    color: var(--color-muted);
+    font-size: 0.75rem;
+    margin-top: 1.2rem;
+}
+
+/* アプリレイアウト */
+.app-page {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* サイドバー */
+.sidebar {
+    width: var(--sidebar-width);
+    background: var(--color-primary);
+    min-height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.sidebar-logo {
+    padding: 1.5rem 1.2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+.sidebar-logo span {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--color-accent);
+    letter-spacing: 0.05em;
+}
+
+.sidebar-logo p {
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 0.2rem;
+}
+
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    vertical-align: middle;
+    line-height: 1;
+}
+
+.sidebar-nav {
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-nav a {
+    padding: 0.85rem 1.2rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+    transition: background var(--transition),color var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.sidebar-nav a:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--color-white);
+}
+
+.sidebar-nav a:active {
+    background: var(--color-accent);
+    color: var(--color-white);
+}
+
+.sidebar-nav a .material-symbols-outlined,.header-user .material-symbols-outlined {
+    font-size: 1.1rem;
+    vertical-align: -3px;
+}
+
+.detail-avatar .material-symbols-outlined {
+    font-size: 2rem;
+    color: var(--color-white);
+    font-size: 50px;
+}
+
+/* メインエリア */
+.MN {
+    margin-left: var(--sidebar-width);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.app-header {
+    height: var(--header-height);
+    background: var(--color-white);
+    border-bottom: 1px solid var(--color-mid);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.2rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.app-header h2 {
+    font-size: 1rem;
+    color: var(--color-primary);
+}
+
+.header-user {
+    font-size: 0.82rem;
+    color: var(--color-muted);
+}
+
+/* 検索バー */
+.search-bar {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    background: var(--color-white);
+    border-bottom: 1px solid var(--color-mid);
+    flex-wrap: wrap;
+    position: sticky;
+    top: var(--header-height);
+    z-index: 9;
+    background: var(--color-white);
+    border-bottom: 1px solid var(--color-mid); 
+}
+
+.search-bar input {
+    flex: 1;
+    min-width: 200px;
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--color-mid);
+    border-radius: var(--radius);
+    transition: border-color var(--transition);
+}
+
+.search-bar input:focus {
+    outline: none;
+    border-color: var(--color-accent);
+}
+
+.search-bar select {
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--color-mid);
+    border-radius: var(--radius);
+    background: var(--color-white);
+    color: var(--color-text);
+    cursor: pointer;
+}
+
+.btn-search {
+    padding: 0.6rem 1.4rem;
+    background: var(--color-accent);
+    color: var(--color-white);
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background var(--transition);
+}
+
+.btn-search:hover {
+    background: #2563eb;
+}
+
+.btn-reset {
+    padding: 0.6rem 1.4rem;
+    background: var(--color-white);
+    color: var(--color-muted);
+    border: 1px solid var(--color-mid);
+    border-radius: var(--radius);
+    transition: background var(--transition);
+}
+
+.btn-reset:hover {
+    background: var(--color-light);
+}
+
+/* 件数表示 */
+.result-count {
+    padding: 0.8rem 2rem;
+    font-size: 0.82rem;
+    color: var(--color-muted);
+}
+
+/* テーブル */
+.table-wrap {
+    padding: 0.2rem 2rem;
+    overflow-x: auto;
+}
+
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--color-white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.user-table th {
+    background: var(--color-primary);
+    color: rgba(255, 255, 255, 0.85);
+    padding: 0.85rem 1rem;
+    text-align: left;
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+}
+
+.user-table td {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--color-mid);
+    font-size: 0.88rem;
+    white-space: nowrap;
+}
+
+.user-table tbody tr:hover {
+    background: var(--color-accent-light);
+}
+
+.user-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.btn-detail {
+    padding: 0.3rem 0.8rem;
+    background: var(--color-accent);
+    color: var(--color-white);
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 0.78rem;
+    box-shadow: 0 1px 3px rgba(59, 130, 246, 0.4);
+    transition: background var(--transition),color var(--transition);
+}
+
+.btn-detail:hover {
+    background: #2563eb;
+    transform: translateY(-1px);
+}
+
+/* 介護バッジ */
+.care-badge {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.care-1{background: #dcfce7; color: #16a34a;}
+.care-2{background: #fef9c3; color: #ca8a04;}
+.care-3{background: #fed7aa; color: #ea580c;}
+.care-4{background: #fecaca; color: #dc2626;}
+.care-5{background: #e9d5ff; color: #7c3aed;}
+
+/* 詳細画面 */
+.detail-wrap {
+    padding: 2rem;
+}
+
+.btn-back {
+    display: inline-block;
+    color: var(--color-accent);
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+    transition: opacity var(--transition);
+}
+
+.btn-back:hover {
+    opacity: 0.7;
+}
+
+.detail-card {
+    background: var(--color-white);
+    border-radius: var(--radius);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+}
+
+.detail-header {
+    background: var(--color-primary);
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.detail-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.detail-header h3 {
+    font-size: 1.3rem;
+    color: var(--color-white);
+    margin-bottom: 0.2rem;
+}
+
+.detail-header p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+}
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(240px, 1fr));
+    gap: 0;
+    border-top: 1px solid var(--color-mid);
+}
+
+.detail-item {
+    padding: 1.2rem 2rem;
+    border-bottom: 1px solid var(--color-mid);
+    border-right: 1px solid var(--color-mid);
+}
+
+.detail-label {
+    font-size: 0.72rem;
+    color: var(--color-muted);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.3rem;
+    text-transform: uppercase;
+}
+
+.detail-value {
+    font-size: 0.95rem;
+    color: var(--color-text);
+    font-weight: 500;
+}
+
+.detail-note {
+    padding: 1.5rem 2rem;
+    border-top: 1px solid var(--color-mid);
+}
+
+.detail-note .detail-value {
+    margin-top: 0.5rem;
+    line-height: 1.8;
+    color: var(--color-muted);
+}
+
+@media(max-width: 1024px) {
+    .sidebar {
+        width: 72px;
+    }
+
+    .MN {
+        margin-left: 72px;
+    }
+
+    .sidebar-logo p {
+        display: none;
+    }
+
+    .sidebar-logo span {
+        font-size: 1rem;
+    }
+
+    .sidebar-nav a {
+        justify-content: center;
+        padding: 0.85rem 0.4rem;
+    }
+
+    .nav-label {
+        display: none;
+    }
+
+    .search-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-bar input,
+    .search-bar select,
+    .btn-search,
+    .btn-reset {
+        width: 100%;
+    }
+    
+    .detail-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+}
