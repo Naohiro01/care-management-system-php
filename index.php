@@ -3,19 +3,19 @@
     require 'db.php';
 
     // タイムアウト設定
-    $timeout = 300;
+    $timeout = 20;
     // 未ログインならログイン画面へ
     if (!isset($_SESSION['logged_in'])) {
         header('Location:login.php');
-    exit;
-    }
-
-    if (time() - $_SESSION['last_activity'] > $timeout) {
-        session_unset();
-        session_destroy();
-        header('Location:login.php?timeout=1');
         exit;
     }
+    
+    // if (time() - $_SESSION['last_activity'] > $timeout) {
+    //     session_unset();
+    //     session_destroy();
+    //     header('Location:login.php?timeout=1');
+    //     exit;
+    // }
 
     $_SESSION['last_activity'] = time();
 
@@ -204,6 +204,28 @@
             document.getElementById('staff-filter').value = '';
             searchUsers();
         });
+
+         setInterval(async() => {
+            const res = await fetch('session-check.php');
+            const data = await res.json();
+            if (!data.valid) {
+                alert('セッションがタイムアウトしました。再度ログインしてください。');
+                window.location.href = 'login.php?timeout=1';
+            }
+        }, 30000);
+
+        // ユーザー操作を検知したらサーバーに活動時刻を伝える
+        let activityTimer = null;
+        function notifyActivity() {
+            clearTimeout(activityTimer);
+            activityTimer = setTimeout(() => {
+                fetch('update-activity.php');
+            }, 1000); //操作が1秒落ち着いたら送信(連打防止)
+        }
+
+        document.addEventListener('click', notifyActivity);
+        document.addEventListener('keydown', notifyActivity);
     </script>
+
 </body>
 </html>
